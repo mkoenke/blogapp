@@ -12,7 +12,12 @@ class BlogList extends React.Component {
   }
   render() {
     console.log("In BlogList render:", this.props)
-    return <>{this.arrayOfBlogCards()}</>
+    return (
+      <>
+        <h1>BLOG LIST</h1>
+        {this.arrayOfBlogCards()}
+      </>
+    )
   }
 }
 
