@@ -8,29 +8,29 @@ import apiResponse from "../fakeAPI"
 class BlogList extends React.Component {
   state = {
     allBlogs: apiResponse,
-    filteredBlogList: apiResponse,
+
     searchValue: "",
   }
 
   arrayOfBlogCards = () => {
-    return this.state.filteredBlogList.map((obj) => (
+    return this.filteredBlogList().map((obj) => (
       <BlogCard blogObj={obj} appClickHandler={this.props.appClickHandler} />
     ))
   }
 
-  // filteredBlogList = () => {
-  //   this.state.allBlogs.filter((blog) =>
-  //     blog.title.toLowerCase().includes(this.state.searchValue.toLowerCase())
-  //   )
-  // }
+  filteredBlogList = () => {
+    return this.state.allBlogs.filter((blog) =>
+      blog.title.toLowerCase().includes(this.state.searchValue.toLowerCase())
+    )
+  }
 
   handleSearch = (e) => {
     console.log(e.target.value)
-    // this.setState({ searchValue: e.target.value })
-    let newArray = this.state.filteredBlogList.filter((blog) =>
-      blog.title.toLowerCase().includes(e.target.value)
-    )
-    this.setState({ filteredBlogList: newArray, searchValue: e.target.value })
+    this.setState({ searchValue: e.target.value })
+    // let newArray = this.state.filteredBlogList.filter((blog) =>
+    //   blog.title.toLowerCase().includes(e.target.value)
+    // )
+    // this.setState({ filteredBlogList: newArray, searchValue: e.target.value })
   }
 
   submitHandler = (newBlog) => {
